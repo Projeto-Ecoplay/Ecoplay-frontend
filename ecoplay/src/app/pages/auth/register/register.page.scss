@@ -1,0 +1,32 @@
+.auth-page {
+  padding: 2rem 1.5rem;
+  max-width: 420px;
+}
+
+.auth-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.auth-form input {
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  padding: 0.75rem 0.875rem;
+}
+
+.auth-form button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  background: #1a1a1a;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
