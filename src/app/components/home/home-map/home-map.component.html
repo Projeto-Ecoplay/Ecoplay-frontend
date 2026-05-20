@@ -1,0 +1,66 @@
+<section class="level-map">
+  <div class="level-title">
+    <span class="level-line"></span>
+    <span class="level-text">LEVEL 1</span>
+    <span class="level-line"></span>
+  </div>
+
+  <div class="map-stage">
+    <svg class="path-svg" viewBox="0 0 360 880" aria-hidden="true">
+      <path
+        class="path-shadow"
+        d="M60 90C150 150 300 60 310 210S230 360 70 330 20 520 220 530 340 530 320 700 230 830 140 840"
+      />
+      <path
+        class="path-main"
+        d="M60 90C150 150 300 60 310 210S230 360 70 330 20 520 220 530 340 530 320 700 230 830 140 840"
+      />
+    </svg>
+
+    <button
+      class="start-cta"
+      type="button"
+      [ngStyle]="{ top: startCta.top, left: startCta.left }"
+    >
+      COME&Ccedil;AR
+    </button>
+
+    <div
+      class="path-node"
+      *ngFor="let node of nodes"
+      [ngClass]="['path-node--' + node.state, 'path-node--' + node.size]"
+      [ngStyle]="{ top: node.top, left: node.left }"
+    >
+      <span class="node-shadow"></span>
+      <span class="node-face">
+        <span class="node-icon" [ngSwitch]="node.type" aria-hidden="true">
+          <svg *ngSwitchCase="'apple'" viewBox="0 0 24 24" role="img" focusable="false">
+            <circle cx="11" cy="13" r="6" fill="#ef4343" />
+            <circle cx="17.5" cy="12" r="3" fill="#f5c443" />
+            <path d="M8 6c2 2 6 2 8 0" stroke="#2f6f33" stroke-width="2" stroke-linecap="round" />
+            <path d="M11 5v3" stroke="#2f6f33" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <svg *ngSwitchCase="'shovel'" viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M4 17c3-3 13-3 16 0" stroke="#8b5e3c" stroke-width="3" stroke-linecap="round" />
+            <path d="M16 6l4 4-2 2-4-4" fill="#9aa3a8" />
+            <path d="M14 4l2 2-4 4-2-2Z" fill="#7b5b3e" />
+          </svg>
+          <svg *ngSwitchCase="'sprout'" viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M12 20v-8" stroke="#2f6f33" stroke-width="2" stroke-linecap="round" />
+            <path d="M12 12c0-4 3-6 7-6-1 4-4 6-7 6Z" fill="#6ec760" />
+            <path d="M12 12c0-4-3-6-7-6 1 4 4 6 7 6Z" fill="#7cdc6d" />
+          </svg>
+          <svg *ngSwitchCase="'wheelbarrow'" viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M5 13h11l-1 6H7Z" fill="#b37b42" />
+            <circle cx="17" cy="18" r="2.5" fill="#5d5d5d" />
+            <path d="M8 13l3-6" stroke="#7a532c" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <svg *ngSwitchCase="'bag'" viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M7 6h10l1 4v9H6V10Z" fill="#f1e6c3" stroke="#8b7b5a" stroke-width="1.5" />
+            <circle cx="12" cy="14" r="2.5" fill="#7cdc6d" />
+          </svg>
+        </span>
+      </span>
+    </div>
+  </div>
+</section>

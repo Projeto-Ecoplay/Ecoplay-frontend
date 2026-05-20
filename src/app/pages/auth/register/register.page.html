@@ -1,23 +1,168 @@
-<section class="auth-page">
-  <h2>Cadastro</h2>
-  <p>Crie sua conta para comecar.</p>
+<section class="auth auth--register">
+  <div class="auth-floaters" aria-hidden="true">
+    <span class="floater floater--leaf"></span>
+    <span class="floater floater--leaf floater--leaf-2"></span>
+    <span class="floater floater--seed"></span>
+    <span class="floater floater--cloud"></span>
+    <span class="floater floater--sun"></span>
+  </div>
 
-  <form class="auth-form">
-    <label>
-      Nome
-      <input type="text" name="name" autocomplete="name" />
-    </label>
+  <div class="auth-card">
+    <div class="hero-wrap">
+      <img
+        class="auth-hero"
+        src="assets/cadastro-img.png"
+        alt="Ilustracao de agricultor plantando sementes"
+      />
+      <span class="hero-spark hero-spark--1"></span>
+      <span class="hero-spark hero-spark--2"></span>
+    </div>
 
-    <label>
-      Email
-      <input type="email" name="email" autocomplete="email" />
-    </label>
+    <div class="auth-copy">
+      <span class="auth-eyebrow">Inscreva-se já</span>
+      <h1>Transforme seu quintal em uma floresta de sabores!</h1>
+      <p>Uma sementinha... e um clique!</p>
+      <!-- <div class="auth-badges">
+        <span class="badge">Novo aventureiro</span>
+        <span class="badge badge--alt">Bonus inicial</span>
+      </div> -->
+    </div>
 
-    <label>
-      Senha
-      <input type="password" name="password" autocomplete="new-password" />
-    </label>
+    <form class="auth-form" autocomplete="on" [formGroup]="registerForm" (ngSubmit)="submit()">
+      <label class="input-field">
+        <span class="sr-only">Nome</span>
+        <span class="input-wrap">
+          <span class="input-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" focusable="false">
+              <path
+                d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.31 0-6 1.79-6 4v2h12v-2c0-2.21-2.69-4-6-4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <input
+            type="text"
+            name="name"
+            autocomplete="name"
+            placeholder="Nome"
+            formControlName="name"
+            required
+          />
+        </span>
+      </label>
 
-    <button type="submit">Criar conta</button>
-  </form>
+      <div class="input-row">
+        <label class="input-field">
+          <span class="sr-only">Nascimento</span>
+          <span class="input-wrap">
+            <span class="input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img" focusable="false">
+                <path
+                  d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1.5A2.5 2.5 0 0 1 22 6.5v13A2.5 2.5 0 0 1 19.5 22h-15A2.5 2.5 0 0 1 2 19.5v-13A2.5 2.5 0 0 1 4.5 4H6V3a1 1 0 0 1 1-1Zm12.5 8H4.5v9.5c0 .55.45 1 1 1h14c.55 0 1-.45 1-1V10Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <input
+              #birthdateInput
+              id="birthdate"
+              type="date"
+              name="birthdate"
+              placeholder="Nascimento"
+              formControlName="birthdate"
+              autocomplete="bday"
+              required
+            />
+          </span>
+        </label>
+        <button
+          class="icon-button"
+          type="button"
+          aria-label="Selecionar data"
+          aria-controls="birthdate"
+          (click)="openBirthdatePicker(birthdateInput)"
+        >
+          <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+            <path
+              d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1.5A2.5 2.5 0 0 1 22 6.5v13A2.5 2.5 0 0 1 19.5 22h-15A2.5 2.5 0 0 1 2 19.5v-13A2.5 2.5 0 0 1 4.5 4H6V3a1 1 0 0 1 1-1Zm12.5 8H4.5v9.5c0 .55.45 1 1 1h14c.55 0 1-.45 1-1V10Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <label class="input-field">
+        <span class="sr-only">Email</span>
+        <span class="input-wrap">
+          <span class="input-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" focusable="false">
+              <path
+                d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v.15l8 4.8 8-4.8V7H4Zm16 10V9.35l-7.48 4.48a1 1 0 0 1-1.04 0L4 9.35V17h16Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="EMAIL"
+            formControlName="email"
+            required
+          />
+        </span>
+      </label>
+
+      <label class="input-field">
+        <span class="sr-only">Senha</span>
+        <span class="input-wrap">
+          <span class="input-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" focusable="false">
+              <path
+                d="M7 10V8a5 5 0 0 1 10 0v2h1.5A1.5 1.5 0 0 1 20 11.5v7A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-7A1.5 1.5 0 0 1 5.5 10H7Zm2 0h6V8a3 3 0 1 0-6 0v2Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <input
+            type="password"
+            name="password"
+            autocomplete="new-password"
+            placeholder="Senha"
+            formControlName="password"
+            required
+          />
+        </span>
+      </label>
+
+      <label class="input-field">
+        <span class="sr-only">Repetir senha</span>
+        <span class="input-wrap">
+          <span class="input-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" focusable="false">
+              <path
+                d="M7 10V8a5 5 0 0 1 10 0v2h1.5A1.5 1.5 0 0 1 20 11.5v7A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-7A1.5 1.5 0 0 1 5.5 10H7Zm2 0h6V8a3 3 0 1 0-6 0v2Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <input
+            type="password"
+            name="repeat-password"
+            autocomplete="new-password"
+            placeholder="Repetir Senha"
+            formControlName="confirmPassword"
+            required
+          />
+        </span>
+      </label>
+
+      <button class="primary-button" type="submit">Cadastrar</button>
+    </form>
+
+    <p class="auth-footer">
+      Possui cadastro?
+      <a class="link link-register" routerLink="/login">clique aqui!</a>
+    </p>
+  </div>
 </section>

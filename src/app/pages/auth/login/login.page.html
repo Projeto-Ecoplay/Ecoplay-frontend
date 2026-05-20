@@ -1,18 +1,124 @@
-<section class="auth-page">
-  <h2>Login</h2>
-  <p>Entre para continuar.</p>
+<section class="auth auth--login">
+  <div class="auth-floaters" aria-hidden="true">
+    <span class="floater floater--leaf"></span>
+    <span class="floater floater--leaf floater--leaf-2"></span>
+    <span class="floater floater--seed"></span>
+    <span class="floater floater--cloud"></span>
+    <span class="floater floater--sun"></span>
+  </div>
 
-  <form class="auth-form">
-    <label>
-      Email
-      <input type="email" name="email" autocomplete="email" />
-    </label>
+  <div class="auth-card">
+    <div class="hero-wrap">
+      <img
+        class="auth-hero"
+        src="assets/login-img.png"
+        alt="Ilustracao de agricultor colhendo legumes"
+      />
+      <span class="hero-spark hero-spark--1"></span>
+      <span class="hero-spark hero-spark--2"></span>
+    </div>
 
-    <label>
-      Senha
-      <input type="password" name="password" autocomplete="current-password" />
-    </label>
+    <div class="auth-copy">
+      <span class="auth-eyebrow">Comece já</span>
+      <h1>Transforme seu quintal em uma floresta de sabores!</h1>
+      <p>Uma sementinha... e um clique!</p>
+      <!-- <div class="auth-badges">
+        <span class="badge">Missao do dia: plantar</span>
+        <span class="badge badge--alt">+20 pontos</span>
+      </div> -->
+    </div>
+ 
+    <form class="auth-form" autocomplete="on" [formGroup]="loginForm" (ngSubmit)="submit()">
+      <label class="input-field">
+        <span class="sr-only">Email</span>
+        <span class="input-wrap">
+          <span class="input-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" focusable="false">
+              <path
+                d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v.15l8 4.8 8-4.8V7H4Zm16 10V9.35l-7.48 4.48a1 1 0 0 1-1.04 0L4 9.35V17h16Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="EMAIL"
+            formControlName="email"
+            required
+          />
+        </span>
+      </label>
 
-    <button type="submit">Entrar</button>
-  </form>
+      <label class="input-field">
+        <span class="sr-only">Senha</span>
+        <span class="input-wrap">
+          <span class="input-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" focusable="false">
+              <path
+                d="M7 10V8a5 5 0 0 1 10 0v2h1.5A1.5 1.5 0 0 1 20 11.5v7A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-7A1.5 1.5 0 0 1 5.5 10H7Zm2 0h6V8a3 3 0 1 0-6 0v2Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <input
+            type="password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="Senha"
+            formControlName="password"
+            required
+          />
+        </span>
+      </label>
+
+      <div class="auth-links">
+        <a class="link link-forgot" href="#">Esqueci minha senha!</a>
+        <a class="link link-register" routerLink="/cadastro">Inscrever-se</a>
+      </div>
+
+      <button class="primary-button" type="submit">LOGIN</button>
+    </form>
+
+    <p class="auth-divider">Ou faça login com</p>
+
+    <div class="social-grid">
+      <button class="social-button" type="button">
+        <span class="social-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" focusable="false">
+            <path
+              d="M21.6 12.23c0-.64-.06-1.26-.16-1.86H12v3.53h5.39a4.62 4.62 0 0 1-2 3.03v2.52h3.22c1.88-1.74 2.99-4.3 2.99-7.22Z"
+              fill="#4285F4"
+            />
+            <path
+              d="M12 22c2.7 0 4.96-.9 6.62-2.45l-3.22-2.52c-.9.6-2.05.96-3.4.96-2.6 0-4.8-1.76-5.58-4.12H3.12v2.6A9.98 9.98 0 0 0 12 22Z"
+              fill="#34A853"
+            />
+            <path
+              d="M6.42 13.87A5.98 5.98 0 0 1 6.12 12c0-.65.11-1.28.3-1.87v-2.6H3.12A9.98 9.98 0 0 0 2 12c0 1.62.39 3.16 1.12 4.47l3.3-2.6Z"
+              fill="#FBBC04"
+            />
+            <path
+              d="M12 6.26c1.47 0 2.78.5 3.82 1.5l2.87-2.87C16.95 3.3 14.69 2.3 12 2.3A9.98 9.98 0 0 0 3.12 7.53l3.3 2.6C7.2 7.99 9.4 6.26 12 6.26Z"
+              fill="#EA4335"
+            />
+          </svg>
+        </span>
+        GOOGLE
+      </button>
+
+      <button class="social-button" type="button">
+        <span class="social-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" focusable="false">
+            <path
+              d="M22 12.06C22 6.52 17.52 2 12 2S2 6.52 2 12.06C2 17.06 5.66 21.2 10.44 22v-7.01H7.9v-2.93h2.54V9.84c0-2.5 1.48-3.88 3.76-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.93h-2.34V22C18.34 21.2 22 17.06 22 12.06Z"
+              fill="#1877F2"
+            />
+          </svg>
+        </span>
+        FACEBOOK
+      </button>
+    </div>
+  </div>
 </section>

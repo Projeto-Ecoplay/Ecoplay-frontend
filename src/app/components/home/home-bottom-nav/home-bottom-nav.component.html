@@ -1,0 +1,14 @@
+<nav class="bottom-nav" aria-label="Navegacao principal">
+  <button
+    class="nav-item"
+    type="button"
+    *ngFor="let item of navItems"
+    [ngClass]="{ 'is-active': item.active }"
+    [attr.aria-label]="item.label"
+  >
+    <span class="nav-icon">
+      <img [src]="item.icon" [alt]="item.label" />
+    </span>
+    <span class="nav-label sr-only">{{ item.label }}</span>
+  </button>
+</nav>

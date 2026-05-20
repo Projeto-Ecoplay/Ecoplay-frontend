@@ -1,3 +1,37 @@
 .home {
-  padding: 2rem 1.5rem;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  background: #f7fbf4 url('/assets/fundo-home.png') repeat;
+  background-size: clamp(180px, 38vw, 230px);
+  padding: clamp(0.95rem, 2.8vw, 1.2rem) clamp(0.85rem, 3vw, 1.1rem)
+    calc(6.4rem + env(safe-area-inset-bottom));
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vw, 0.95rem);
+  overflow: hidden;
+}
+
+.home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.82) 55%, rgba(247, 251, 244, 0.92) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+app-home-header,
+app-home-banner,
+app-home-map {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 420px) {
+  .home {
+    max-width: 100%;
+  }
 }

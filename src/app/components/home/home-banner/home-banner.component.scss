@@ -1,0 +1,45 @@
+.level-banner {
+  background: #0f3441;
+  color: #e5f7df;
+  border-radius: clamp(12px, 3vw, 16px);
+  padding: clamp(0.75rem, 3vw, 0.95rem) clamp(0.9rem, 3.8vw, 1.2rem);
+  border: 2px solid #0c2a36;
+  box-shadow: 0 9px 0 rgba(12, 42, 54, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-title {
+  font-family: 'Baloo 2', 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 3.2vw, 1.1rem);
+  color: #7cdc6d;
+}
+
+.level-banner p {
+  margin: 0.25rem 0 0;
+  font-weight: 700;
+  font-size: clamp(0.62rem, 2.2vw, 0.72rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.banner-icon {
+  width: clamp(46px, 13vw, 58px);
+  height: clamp(46px, 13vw, 58px);
+  border-radius: clamp(12px, 3vw, 14px);
+  background: #0b2a35;
+  display: grid;
+  place-items: center;
+  border: 2px solid #1b4a57;
+  flex-shrink: 0;
+}
+
+.banner-icon svg {
+  width: clamp(30px, 8vw, 40px);
+  height: clamp(30px, 8vw, 40px);
+}
