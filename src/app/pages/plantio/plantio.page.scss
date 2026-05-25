@@ -1,16 +1,15 @@
 .plantio {
   min-height: 100vh;
   width: 100%;
-  max-width: 430px;
+  max-width: var(--page-max);
   margin: 0 auto;
-  background: #f7fbf4 url('/assets/fundo-home.png') repeat;
-  background-size: clamp(180px, 38vw, 230px);
-  padding: clamp(1rem, 3vw, 1.2rem) clamp(0.9rem, 3vw, 1.1rem)
-    calc(6.7rem + env(safe-area-inset-bottom));
-  position: relative;
+  padding: var(--page-pad-y) var(--page-pad-x) var(--page-pad-bottom);
   display: flex;
   flex-direction: column;
-  gap: clamp(0.9rem, 2.4vw, 1.2rem);
+  gap: clamp(1rem, 2.6vw, 1.35rem);
+  background: #f3f8f2 url('/assets/fundo-home.png') repeat;
+  background-size: clamp(170px, 36vw, 215px);
+  position: relative;
   overflow: hidden;
 }
 
@@ -18,7 +17,12 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.8) 55%, rgba(247, 251, 244, 0.92) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(241, 248, 241, 0.88) 55%,
+    rgba(233, 243, 233, 0.97) 100%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -28,96 +32,51 @@
   z-index: 1;
 }
 
-.plantio-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.8rem;
-}
-
-.plantio-header h1 {
-  margin: 0;
-  font-family: 'Baloo 2', 'Nunito', sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.5rem, 5.6vw, 2.1rem);
-  color: #0f3441;
-}
-
-.plantio-header p {
-  margin: 0.2rem 0 0;
-  color: #1a4a5c;
-  font-weight: 700;
-  font-size: clamp(0.75rem, 2.6vw, 0.9rem);
-}
-
-.plantio-logo {
-  width: clamp(46px, 12vw, 56px);
-  height: clamp(46px, 12vw, 56px);
-  border-radius: 50%;
-  border: 2px solid #113646;
-  background: #e7f6eb;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 5px 0 rgba(17, 54, 70, 0.18);
-  flex-shrink: 0;
-}
-
-.plantio-logo img,
-.plantio-logo svg {
-  width: 72%;
-  height: 72%;
-  object-fit: contain;
-}
-
-.plantio-mission {
+.missions-panel {
   background: #0f3441;
-  color: #e5f7df;
-  border-radius: clamp(16px, 3.6vw, 20px);
-  padding: clamp(0.85rem, 3vw, 1.1rem);
   border: 2px solid #0c2a36;
-  box-shadow: 0 10px 0 rgba(12, 42, 54, 0.35);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.8rem 1rem;
-  align-items: center;
+  border-radius: clamp(24px, 5.4vw, 30px);
+  padding: clamp(1rem, 3.2vw, 1.25rem);
+  box-shadow: 0 14px 0 rgba(12, 42, 54, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
 }
 
-.mission-eyebrow {
-  font-weight: 800;
-  color: #7cdc6d;
-  font-size: 0.8rem;
-}
-
-.plantio-mission h2 {
-  margin: 0.3rem 0 0.2rem;
-  font-family: 'Baloo 2', 'Nunito', sans-serif;
-  font-size: clamp(1rem, 3.6vw, 1.2rem);
-}
-
-.plantio-mission p {
+.missions-header h1 {
   margin: 0;
-  font-weight: 700;
-  font-size: clamp(0.7rem, 2.4vw, 0.85rem);
-  color: #cde5e9;
+  text-align: center;
+  font-family: 'Baloo 2', 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.35rem, 5vw, 1.7rem);
+  color: #ffffff;
+  letter-spacing: 0.3px;
 }
 
-.mission-reward {
-  display: inline-flex;
-  margin-top: 0.4rem;
-  padding: 0.25rem 0.6rem;
-  background: #7cdc6d;
-  color: #0f3441;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 0.75rem;
+.mission-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.mission-item {
+  --accent: #7ccf7a;
+  background: #f5fff1;
+  border: 3px solid var(--accent);
+  border-radius: 18px;
+  padding: 0.75rem 0.8rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 6px 0 rgba(12, 42, 54, 0.15);
 }
 
 .mission-icon {
   width: 54px;
   height: 54px;
   border-radius: 14px;
-  background: #0b2a35;
-  border: 2px solid #1b4a57;
+  background: #ffffff;
+  border: 2px solid rgba(17, 54, 70, 0.25);
   display: grid;
   place-items: center;
 }
@@ -128,76 +87,173 @@
   object-fit: contain;
 }
 
-.mission-cta {
-  grid-column: 1 / -1;
-  border: 2px solid #0c2a36;
-  border-radius: 12px;
-  padding: 0.6rem 1.6rem;
+.mission-content h2 {
+  margin: 0;
+  font-family: 'Baloo 2', 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: clamp(0.95rem, 3.6vw, 1.1rem);
+  color: #0f3441;
+  line-height: 1.15;
+}
+
+.mission-content p {
+  margin: 0.15rem 0 0.45rem;
+  font-size: clamp(0.7rem, 2.4vw, 0.82rem);
+  font-weight: 700;
+  color: #1f4f5f;
+}
+
+.mission-progress {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.progress-label {
+  min-width: 38px;
+  padding: 0.1rem 0.4rem;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #0f3441;
+  font-weight: 800;
+  font-size: 0.65rem;
+  text-align: center;
+  border: 1px solid rgba(17, 54, 70, 0.2);
+}
+
+.progress-track {
+  height: 14px;
+  background: #dbeef4;
+  border-radius: 999px;
+  border: 1.5px solid #bdd5de;
+  overflow: hidden;
+  display: block;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  display: block;
+  border-radius: 999px;
+}
+
+.mission-xp {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #f2bf62;
+  color: #9b5a10;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  line-height: 1;
+  border: 2px solid rgba(155, 90, 16, 0.2);
+}
+
+.xp-value {
   font-size: 1rem;
+}
+
+.xp-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+.score-card {
+  background: #0d3645;
+  border: 2px solid #0b2a35;
+  border-radius: 20px;
+  padding: 0.75rem 0.8rem 0.85rem;
+  color: #ffffff;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.score-card h2 {
+  margin: 0;
+  text-align: center;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.score-row {
+  background: #2a4f60;
+  border-radius: 16px;
+  padding: 0.55rem 0.7rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.level-badge {
+  background: #1a4150;
+  border-radius: 12px;
+  border: 2px solid rgba(12, 42, 54, 0.6);
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+  color: #f8d269;
+  font-weight: 800;
+  min-width: 50px;
+}
+
+.level-label {
+  display: block;
+  font-size: 0.55rem;
+}
+
+.level-value {
+  display: block;
+  font-size: 1rem;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0f3441;
+  border: 2px solid #7cdc6d;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.score-total {
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.missions-cta {
+  border: 2px solid #0c2a36;
+  border-radius: 14px;
+  padding: 0.8rem 1.1rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: #ffffff;
   background: #5cab4f;
   box-shadow: 0 6px 0 rgba(12, 42, 54, 0.35);
   cursor: pointer;
-  justify-self: start;
+  width: 100%;
+  text-align: center;
 }
 
-.plantio-section-title {
-  margin: 0;
-  font-family: 'Baloo 2', 'Nunito', sans-serif;
-  font-size: clamp(1.1rem, 4vw, 1.3rem);
-  color: #0f3441;
-}
-
-.plantio-grid {
-  display: grid;
-  gap: 0.65rem;
-}
-
-.plantio-bed {
-  border: 2px solid #113646;
-  border-radius: 16px;
-  padding: 0.7rem 0.9rem;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.7rem;
-  background: #ffffff;
-  box-shadow: 0 6px 0 rgba(17, 54, 70, 0.16);
-  cursor: pointer;
-  text-align: left;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.plantio-bed.is-selected {
-  border-color: #5cab4f;
-  box-shadow: 0 8px 0 rgba(12, 42, 54, 0.25);
-}
-
-.plantio-bed:hover {
-  transform: translateY(-1px);
-}
-
-.bed-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #eaf6ec;
-  border: 2px solid #5cab4f;
-  display: grid;
-  place-items: center;
-}
-
-.bed-icon img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-}
-
-.bed-info strong {
-  display: block;
-  font-weight: 800;
-  color: #0f3441;
+.missions-cta:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 0 rgba(12, 42, 54, 0.3);
 }
 
 .bed-info span {

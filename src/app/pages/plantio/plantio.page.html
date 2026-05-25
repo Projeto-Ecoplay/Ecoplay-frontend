@@ -1,63 +1,54 @@
 <section class="plantio">
-  <header class="plantio-header">
-    <div>
-      <h1>Plantio</h1>
-      <p>Gerencie seus canteiros e plante hoje.</p>
-    </div>
-    <span class="plantio-logo" aria-label="EcoPlay">
-      <img *ngIf="!logoError()" src="assets/logo-wt.png" alt="EcoPlay" (error)="onLogoError()" />
-      <svg *ngIf="logoError()" viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="24" cy="24" r="20" fill="#e7f6eb" stroke="#113646" stroke-width="3" />
-        <path d="M24 12v14" stroke="#2f6f33" stroke-width="3" stroke-linecap="round" />
-        <path d="M24 22c0-5 4-8 10-8-2 6-6 8-10 8Z" fill="#7cdc6d" />
-        <path d="M24 22c0-5-4-8-10-8 2 6 6 8 10 8Z" fill="#6ec760" />
-      </svg>
-    </span>
-  </header>
+  <section class="missions-panel" aria-label="Missoes">
+    <header class="missions-header">
+      <h1>Miss&otilde;es</h1>
+    </header>
 
-  <section class="plantio-mission">
-    <div class="mission-copy">
-      <span class="mission-eyebrow">Miss&atilde;o do dia</span>
-      <h2>{{ dailyMission().title }}</h2>
-      <p>{{ dailyMission().subtitle }}</p>
-      <span class="mission-reward">{{ dailyMission().reward }}</span>
+    <div class="mission-list">
+      <article
+        class="mission-item"
+        *ngFor="let mission of missions(); trackBy: trackById"
+        [style.--accent]="mission.accent"
+      >
+        <div class="mission-icon">
+          <img [src]="mission.icon" [alt]="mission.alt" />
+        </div>
+        <div class="mission-content">
+          <h2 [innerHTML]="mission.title"></h2>
+          <p [innerHTML]="mission.subtitle"></p>
+          <div class="mission-progress">
+            <span class="progress-label">{{ mission.progressLabel }}</span>
+            <span class="progress-track">
+              <span class="progress-fill" [style.width.%]="mission.progress"></span>
+            </span>
+          </div>
+        </div>
+        <div class="mission-xp" aria-label="Recompensa">
+          <span class="xp-value">{{ mission.xp }}</span>
+          <span class="xp-label">XP</span>
+        </div>
+      </article>
     </div>
-    <div class="mission-icon">
-      <img [src]="dailyMission().icon" alt="Missao" />
-    </div>
-    <button class="mission-cta" type="button">Plantar</button>
-  </section>
 
-  <h2 class="plantio-section-title">Canteiros</h2>
-  <div class="plantio-grid">
-    <button
-      class="plantio-bed"
-      type="button"
-      *ngFor="let bed of beds(); trackBy: trackById"
-      [class.is-selected]="bed.id === selectedBedId()"
-      (click)="selectBed(bed.id)"
-    >
-      <span class="bed-icon">
-        <img [src]="bed.icon" [alt]="bed.name" />
-      </span>
-      <div class="bed-info">
-        <strong>{{ bed.name }}</strong>
-        <span>{{ bed.status }}</span>
-        <span class="bed-bar"><span [style.width.%]="bed.progress"></span></span>
+    <section class="score-card" aria-label="Pontuacao atual">
+      <h2>Pontua&ccedil;&atilde;o atual</h2>
+      <div class="score-row">
+        <div class="level-badge" aria-label="Nivel">
+          <span class="level-label">LVL</span>
+          <span class="level-value">{{ score().level }}</span>
+        </div>
+        <div class="user-badge">
+          <span class="avatar">
+            <img [src]="score().avatar" alt="Usuario" />
+          </span>
+          <span class="user-name">{{ score().name }}</span>
+        </div>
+        <span class="score-total">{{ score().total }} XP</span>
       </div>
-      <span class="bed-progress">{{ bed.progress }}%</span>
-    </button>
-  </div>
+    </section>
 
-  <h2 class="plantio-section-title">Ferramentas</h2>
-  <div class="plantio-tools">
-    <button class="tool-item" type="button" *ngFor="let tool of tools(); trackBy: trackById">
-      <span class="tool-icon">
-        <img [src]="tool.icon" [alt]="tool.label" />
-      </span>
-      <span class="tool-label">{{ tool.label }}</span>
-    </button>
-  </div>
+    <button class="missions-cta" type="button">Completar Miss&otilde;es</button>
+  </section>
 
   <app-home-bottom-nav></app-home-bottom-nav>
 </section>

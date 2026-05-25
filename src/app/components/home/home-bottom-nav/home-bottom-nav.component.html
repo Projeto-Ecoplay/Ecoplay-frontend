@@ -1,7 +1,6 @@
 <nav class="bottom-nav" aria-label="Navegacao principal">
-  <button
+  <a
     class="nav-item"
-    type="button"
     *ngFor="let item of navItems; trackBy: trackByLabel"
     [routerLink]="item.route"
     routerLinkActive="is-active"
@@ -11,6 +10,6 @@
     <span class="nav-icon">
       <img [src]="item.icon" [alt]="item.label" />
     </span>
-    <span class="nav-label sr-only">{{ item.label }}</span>
-  </button>
+    <span class="nav-label">{{ item.label }}</span>
+  </a>
 </nav>

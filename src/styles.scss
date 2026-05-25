@@ -11,6 +11,14 @@
 	--blue-500: #2f7cc1;
 	--stroke: #113646;
 	--white: #ffffff;
+	--page-max: 460px;
+	--page-pad-x: clamp(1rem, 3.2vw, 1.3rem);
+	--page-pad-y: clamp(1.05rem, 3.2vw, 1.35rem);
+	--page-pad-bottom: calc(7.1rem + env(safe-area-inset-bottom));
+}
+
+html {
+	font-size: 110%;
 }
 
 * {

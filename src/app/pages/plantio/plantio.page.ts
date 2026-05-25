@@ -11,77 +11,69 @@ import { HomeComponentsModule } from '../../components/home/home-components.modu
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlantioPage {
-  readonly logoError = signal(false);
-  readonly selectedBedId = signal(1);
-
-  readonly dailyMission = signal<DailyMission>({
-    title: 'Plantar feijao',
-    subtitle: 'Missao do dia disponivel agora',
-    reward: '+20 XP',
-    icon: 'assets/Formata%C3%A7%C3%A3o.png'
-  });
-
-  readonly beds = signal<PlantBed[]>([
+  readonly missions = signal<Mission[]>([
     {
       id: 1,
-      name: 'Canteiro A',
-      status: 'Pronto para plantar',
+      title: 'Plante uma &Aacute;rvore',
+      subtitle: 'Plante uma &aacute;rvore em sua casa',
       progress: 0,
-      icon: 'assets/Formata%C3%A7%C3%A3o.png'
+      progressLabel: '0/1',
+      xp: 450,
+      icon: 'assets/icon/platar.svg',
+      alt: 'Icone de plantio',
+      accent: '#8bd07a'
     },
     {
       id: 2,
-      name: 'Canteiro B',
-      status: 'Regado recentemente',
-      progress: 45,
-      icon: 'assets/icone.png'
+      title: 'Regue as Plantas',
+      subtitle: 'Regue as plantas da horta 3 vezes',
+      progress: 33,
+      progressLabel: '1/3',
+      xp: 250,
+      icon: 'assets/icon/missoes.svg',
+      alt: 'Icone de rega',
+      accent: '#f0cf74'
     },
     {
       id: 3,
-      name: 'Canteiro C',
-      status: 'Broto crescendo',
-      progress: 72,
-      icon: 'assets/Home.png'
+      title: 'Colha Vegetais',
+      subtitle: 'Colha 5 vegetais na horta',
+      progress: 60,
+      progressLabel: '3/5',
+      xp: 350,
+      icon: 'assets/icon/pontos.svg',
+      alt: 'Icone de colheita',
+      accent: '#d98a73'
     }
   ]);
 
-  readonly tools = signal<Tool[]>([
-    { id: 1, label: 'Regar', icon: 'assets/icone.png' },
-    { id: 2, label: 'Adubar', icon: 'assets/Ranks.png' },
-    { id: 3, label: 'Colher', icon: 'assets/Cadastro.png' },
-    { id: 4, label: 'Cavar', icon: 'assets/Login.png' }
-  ]);
+  readonly score = signal<Score>({
+    level: 1,
+    name: 'Lucas',
+    total: 1000,
+    avatar: 'assets/Usuario.png'
+  });
 
-  onLogoError(): void {
-    this.logoError.set(true);
-  }
-
-  selectBed(id: number): void {
-    this.selectedBedId.set(id);
-  }
-
-  trackById(_: number, item: PlantBed | Tool): number {
+  trackById(_: number, item: Mission): number {
     return item.id;
   }
 }
 
-interface DailyMission {
+interface Mission {
+  id: number;
   title: string;
   subtitle: string;
-  reward: string;
-  icon: string;
-}
-
-interface PlantBed {
-  id: number;
-  name: string;
-  status: string;
   progress: number;
+  progressLabel: string;
+  xp: number;
   icon: string;
+  alt: string;
+  accent: string;
 }
 
-interface Tool {
-  id: number;
-  label: string;
-  icon: string;
+interface Score {
+  level: number;
+  name: string;
+  total: number;
+  avatar: string;
 }

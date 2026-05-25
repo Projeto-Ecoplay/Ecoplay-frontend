@@ -1,16 +1,15 @@
 .delivery {
   min-height: 100vh;
   width: 100%;
-  max-width: 430px;
+  max-width: var(--page-max);
   margin: 0 auto;
   background: #f7fbf4 url('/assets/fundo-home.png') repeat;
   background-size: clamp(180px, 38vw, 230px);
-  padding: clamp(1rem, 3vw, 1.2rem) clamp(0.9rem, 3vw, 1.1rem)
-    calc(6.7rem + env(safe-area-inset-bottom));
+  padding: var(--page-pad-y) var(--page-pad-x) var(--page-pad-bottom);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: clamp(0.9rem, 2.4vw, 1.15rem);
+  gap: clamp(1rem, 2.6vw, 1.3rem);
   overflow: hidden;
 }
 
@@ -51,8 +50,8 @@
 }
 
 .delivery-logo {
-  width: clamp(46px, 12vw, 56px);
-  height: clamp(46px, 12vw, 56px);
+  width: clamp(50px, 12.6vw, 62px);
+  height: clamp(50px, 12.6vw, 62px);
   border-radius: 50%;
   border: 2px solid #113646;
   background: #e7f6eb;
@@ -71,8 +70,8 @@
 
 .map-card {
   background: #5cab4f;
-  border-radius: clamp(16px, 4vw, 22px);
-  padding: clamp(0.55rem, 2.4vw, 0.8rem);
+  border-radius: clamp(18px, 4.2vw, 24px);
+  padding: clamp(0.65rem, 2.6vw, 0.9rem);
   border: 2px solid #3f9740;
   box-shadow: 0 10px 0 rgba(20, 76, 32, 0.28);
 }
@@ -83,7 +82,7 @@
   border-radius: clamp(12px, 3vw, 18px);
   overflow: hidden;
   border: 2px solid #c5d8bf;
-  min-height: clamp(240px, 62vw, 320px);
+  min-height: clamp(260px, 66vw, 350px);
 }
 
 .map-canvas {
@@ -151,9 +150,9 @@
   background: #ffffff;
   color: #0f3441;
   border-radius: 999px;
-  padding: 0.25rem 0.7rem;
+  padding: 0.3rem 0.8rem;
   font-weight: 800;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -191,7 +190,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.75rem;
-  padding: 0.7rem 0.9rem;
+  padding: 0.8rem 1rem;
   align-items: center;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
@@ -215,9 +214,9 @@
 }
 
 .school-icon {
-  width: clamp(46px, 14vw, 54px);
-  height: clamp(46px, 14vw, 54px);
-  border-radius: 12px;
+  width: clamp(52px, 15vw, 60px);
+  height: clamp(52px, 15vw, 60px);
+  border-radius: 14px;
   background: #ffffff;
   border: 2px solid #113646;
   display: grid;
@@ -234,13 +233,13 @@
 
 .school-info strong {
   display: block;
-  font-size: clamp(0.95rem, 3.6vw, 1.1rem);
+  font-size: clamp(1rem, 3.8vw, 1.2rem);
   color: #1c4f5f;
 }
 
 .school-info span {
   display: block;
-  font-size: clamp(0.72rem, 2.6vw, 0.85rem);
+  font-size: clamp(0.78rem, 2.8vw, 0.92rem);
   color: #2f6b7d;
   font-weight: 700;
   line-height: 1.2;

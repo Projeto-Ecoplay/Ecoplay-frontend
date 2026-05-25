@@ -1,16 +1,15 @@
 .ranks {
   min-height: 100vh;
   width: 100%;
-  max-width: 430px;
+  max-width: var(--page-max);
   margin: 0 auto;
   background: #f7fbf4 url('/assets/fundo-home.png') repeat;
   background-size: clamp(180px, 38vw, 230px);
-  padding: clamp(1rem, 3vw, 1.2rem) clamp(0.9rem, 3vw, 1.1rem)
-    calc(6.7rem + env(safe-area-inset-bottom));
+  padding: var(--page-pad-y) var(--page-pad-x) var(--page-pad-bottom);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: clamp(0.9rem, 2.4vw, 1.3rem);
+  gap: clamp(1rem, 2.6vw, 1.4rem);
   overflow: hidden;
 }
 
@@ -62,8 +61,8 @@
 }
 
 .podium-avatar {
-  width: clamp(64px, 18vw, 78px);
-  height: clamp(64px, 18vw, 78px);
+  width: clamp(70px, 19vw, 86px);
+  height: clamp(70px, 19vw, 86px);
   border-radius: 50%;
   background: #133b48;
   border: 3px solid #7cdc6d;
@@ -80,8 +79,8 @@
 }
 
 .podium-spot.is-first .podium-avatar {
-  width: clamp(78px, 22vw, 92px);
-  height: clamp(78px, 22vw, 92px);
+  width: clamp(86px, 24vw, 102px);
+  height: clamp(86px, 24vw, 102px);
   border-color: #7cdc6d;
 }
 
@@ -98,8 +97,8 @@
   position: absolute;
   top: -6px;
   right: -6px;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -181,8 +180,8 @@
 }
 
 .rank-avatar-mini {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #173b47;
   border: 2px solid #7cdc6d;
