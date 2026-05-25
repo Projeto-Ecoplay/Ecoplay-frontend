@@ -1,0 +1,89 @@
+<section class="profile">
+  <div class="profile-card">
+    <div class="profile-top">
+      <button class="profile-edit" type="button" aria-label="Editar perfil">
+        <svg viewBox="0 0 24 24" role="img" focusable="false">
+          <path
+            d="M3 17.25V21h3.75L17.8 9.95l-3.75-3.75L3 17.25Zm18-11.5a1 1 0 0 0 0-1.4l-1.85-1.85a1 1 0 0 0-1.4 0l-1.4 1.4 3.75 3.75 1.4-1.4Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+
+      <div class="profile-avatar" aria-hidden="true">
+        <img [src]="profile().avatar" [alt]="profile().name" />
+      </div>
+
+      <h1 class="profile-name">{{ profile().name }}</h1>
+      <p class="profile-level">{{ profile().levelTitle }}</p>
+
+      <div class="seed-track" aria-hidden="true">
+        <span
+          class="seed"
+          *ngFor="let seed of seedSlots(); trackBy: trackById"
+          [class.is-on]="seed.filled"
+        ></span>
+        <span class="sprout" *ngFor="let sprout of sprouts(); trackBy: trackByIndex">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 20v-8" stroke="#2f6f33" stroke-width="2" stroke-linecap="round" />
+            <path d="M12 12c0-4 3-6 7-6-1 4-4 6-7 6Z" fill="#7cdc6d" />
+            <path d="M12 12c0-4-3-6-7-6 1 4 4 6 7 6Z" fill="#6ec760" />
+          </svg>
+        </span>
+      </div>
+      <div class="xp-label">{{ profile().xpCurrent }}/{{ profile().xpTotal }} XP</div>
+    </div>
+
+    <h2 class="section-title">Conquistas</h2>
+    <div class="achievement-grid">
+      <button
+        class="achievement"
+        *ngFor="let achievement of achievements(); trackBy: trackById"
+        [class.achievement--add]="achievement.isAdd"
+        [class.is-locked]="!achievement.unlocked"
+        type="button"
+        [attr.aria-label]="achievement.title"
+      >
+        <span *ngIf="achievement.isAdd">+</span>
+        <img *ngIf="!achievement.isAdd" [src]="achievement.icon" [alt]="achievement.title" />
+      </button>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2 class="section-title">Dados</h2>
+    <form class="profile-form" (ngSubmit)="save()">
+      <label class="field">
+        <span>Nome</span>
+        <input
+          type="text"
+          [value]="form().name"
+          (input)="updateField('name', $any($event.target).value)"
+        />
+      </label>
+      <label class="field">
+        <span>E-mail</span>
+        <input
+          type="email"
+          [value]="form().email"
+          (input)="updateField('email', $any($event.target).value)"
+        />
+      </label>
+      <label class="field">
+        <span>Senha</span>
+        <input
+          type="password"
+          [value]="form().password"
+          (input)="updateField('password', $any($event.target).value)"
+        />
+      </label>
+      <button class="primary-action" type="submit" [disabled]="!isDirty()">Alterar</button>
+    </form>
+
+    <button class="logout" type="button" (click)="logout()">
+      Sair <span aria-hidden="true">X</span>
+    </button>
+  </div>
+
+  <app-home-bottom-nav></app-home-bottom-nav>
+</section>

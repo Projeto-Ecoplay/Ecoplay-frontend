@@ -31,6 +31,7 @@
   box-shadow: 0 5px 0 rgba(17, 54, 70, 0.18);
   display: grid;
   place-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .nav-icon img {
@@ -43,4 +44,19 @@
   background: #ffffff;
   border-color: #3b7aa6;
   box-shadow: 0 5px 0 rgba(59, 122, 166, 0.2);
+}
+
+.nav-item:hover .nav-icon {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 rgba(17, 54, 70, 0.2);
+}
+
+.nav-item:active .nav-icon {
+  transform: translateY(1px);
+  box-shadow: 0 3px 0 rgba(17, 54, 70, 0.2);
+}
+
+.nav-item:focus-visible .nav-icon {
+  outline: 2px solid #3b7aa6;
+  outline-offset: 3px;
 }

@@ -2,8 +2,10 @@
   <button
     class="nav-item"
     type="button"
-    *ngFor="let item of navItems"
-    [ngClass]="{ 'is-active': item.active }"
+    *ngFor="let item of navItems; trackBy: trackByLabel"
+    [routerLink]="item.route"
+    routerLinkActive="is-active"
+    [routerLinkActiveOptions]="{ exact: item.exact ?? true }"
     [attr.aria-label]="item.label"
   >
     <span class="nav-icon">

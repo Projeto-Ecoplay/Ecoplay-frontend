@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 type NavItem = {
   label: string;
   icon: string;
-  active?: boolean;
+  route: string;
+  exact?: boolean;
 };
 
 @Component({
@@ -14,10 +15,14 @@ type NavItem = {
 })
 export class HomeBottomNavComponent {
   readonly navItems: NavItem[] = [
-    { label: 'Inicio', icon: 'assets/icone.png', active: true },
-    { label: 'Rank', icon: 'assets/Ranks.png' },
-    { label: 'Plantar', icon: 'assets/Formata%C3%A7%C3%A3o.png' },
-    { label: 'Mapa', icon: 'assets/Pontos%20de%20entrega.png' },
-    { label: 'Perfil', icon: 'assets/Usuario.png' }
+    { label: 'Fazenda', icon: 'assets/Home.png', route: '/home', exact: true },
+    { label: 'Conquistas', icon: 'assets/Ranks.png', route: '/conquistas', exact: true },
+    { label: 'Plantio', icon: 'assets/Formata%C3%A7%C3%A3o.png', route: '/plantio', exact: true },
+    { label: 'Mapa', icon: 'assets/Pontos%20de%20entrega.png', route: '/pontos-entrega', exact: true },
+    { label: 'Perfil', icon: 'assets/Usuario.png', route: '/usuario', exact: true }
   ];
+
+  trackByLabel(_: number, item: NavItem): string {
+    return item.label;
+  }
 }

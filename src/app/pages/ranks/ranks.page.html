@@ -1,0 +1,42 @@
+<section class="ranks">
+  <h1 class="ranks-title">Top Colhedores da Semana</h1>
+
+  <div class="ranks-card">
+    <div class="podium">
+      <div
+        class="podium-spot"
+        *ngFor="let entry of podium(); trackBy: trackById"
+        [ngClass]="'is-' + entry.position"
+      >
+        <div class="podium-avatar">
+          <span class="podium-badge" [ngClass]="'podium-badge--' + entry.position">{{ entry.rank }}#</span>
+          <img [src]="entry.avatar" [alt]="entry.name" loading="lazy" />
+        </div>
+        <span class="podium-name">{{ entry.name }}</span>
+        <span class="podium-surname">{{ entry.subtitle }}</span>
+        <span class="podium-xp">{{ entry.xp }} XP</span>
+      </div>
+    </div>
+
+    <div class="ranks-divider"></div>
+
+    <div class="ranks-list">
+      <div
+        class="ranks-item"
+        *ngFor="let user of ranks(); trackBy: trackById"
+        [class.is-highlight]="user.highlight"
+      >
+        <span class="rank-index">#{{ user.rank }}</span>
+        <span class="rank-user">
+          <span class="rank-avatar-mini">
+            <img [src]="user.avatar" [alt]="user.name" loading="lazy" />
+          </span>
+          <span class="rank-name">{{ user.name }}</span>
+        </span>
+        <span class="rank-xp">{{ user.xp }} XP</span>
+      </div>
+    </div>
+  </div>
+
+  <app-home-bottom-nav></app-home-bottom-nav>
+</section>

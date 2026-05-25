@@ -1,6 +1,138 @@
 <section class="home">
-  <app-home-header></app-home-header>
-  <app-home-banner></app-home-banner>
-  <app-home-map></app-home-map>
+  <header class="home-header">
+    <div class="level-chip">
+      <span class="level-circle">LVL 1</span>
+      <div class="xp-meter">
+        <span class="xp-text">{{ xpCurrent() }}/{{ xpTotal() }} XP</span>
+        <span class="xp-track" role="progressbar" aria-valuemin="0" [attr.aria-valuenow]="xpCurrent()" [attr.aria-valuemax]="xpTotal()">
+          <span class="xp-fill" [style.width.%]="xpPercent()"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="next-card" aria-label="Proxima acao">
+      <span class="next-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img" focusable="false">
+          <path
+            d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2Zm0 2a8 8 0 1 1-8 8 8 8 0 0 1 8-8Zm-1 3h2v5.25l3.5 2.1-1 1.7L11 13.1Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <div>
+        <span class="next-label">Pr&oacute;xima A&ccedil;&atilde;o</span>
+        <strong class="next-time">{{ nextActionLabel() }}</strong>
+      </div>
+    </div>
+
+    <div class="logo-badge" aria-label="EcoPlay">
+      <img
+        *ngIf="!logoError()"
+        src="assets/logo-wt.png"
+        alt="EcoPlay"
+        (error)="onLogoError()"
+      />
+      <svg *ngIf="logoError()" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" fill="#e7f6eb" stroke="#113646" stroke-width="3" />
+        <path d="M24 12v14" stroke="#2f6f33" stroke-width="3" stroke-linecap="round" />
+        <path d="M24 22c0-5 4-8 10-8-2 6-6 8-10 8Z" fill="#7cdc6d" />
+        <path d="M24 22c0-5-4-8-10-8 2 6 6 8 10 8Z" fill="#6ec760" />
+      </svg>
+    </div>
+  </header>
+
+  <section class="mission-card" aria-label="Missao principal">
+    <div class="mission-copy">
+      <span class="mission-level">LVL 1 - F&Aacute;CIL</span>
+      <p>FA&Ccedil;A SUA PRIMEIRA PLANTA&Ccedil;&Atilde;O DE FEIJ&Atilde;O</p>
+    </div>
+    <span class="mission-icon" aria-hidden="true">
+      <svg viewBox="0 0 64 64" role="img" focusable="false">
+        <path d="M10 16h30a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H26l-8 6V20a4 4 0 0 1 4-4Z" fill="#0b2a35" />
+        <path d="M22 26h16" stroke="#7cdc6d" stroke-width="3" stroke-linecap="round" />
+        <path d="M22 32h10" stroke="#7cdc6d" stroke-width="3" stroke-linecap="round" />
+        <path d="M42 38c0-6 5-9 12-9-2 6-7 9-12 9Z" fill="#7cdc6d" />
+        <path d="M42 38c0-6-5-9-12-9 2 6 7 9 12 9Z" fill="#6ec760" />
+        <path d="M42 36v10" stroke="#2f6f33" stroke-width="3" stroke-linecap="round" />
+      </svg>
+    </span>
+  </section>
+
+  <div class="level-title">
+    <span class="level-line"></span>
+    <span class="level-text">LEVEL 1</span>
+    <span class="level-line"></span>
+  </div>
+
+  <div class="progress-map" aria-label="Mapa de progresso">
+    <svg class="map-path" viewBox="0 0 360 880" aria-hidden="true">
+      <path
+        class="path-shadow"
+        d="M60 90C150 150 300 60 310 210S230 360 70 330 20 520 220 530 340 530 320 700 230 830 140 840"
+      />
+      <path
+        class="path-main"
+        d="M60 90C150 150 300 60 310 210S230 360 70 330 20 520 220 530 340 530 320 700 230 830 140 840"
+      />
+    </svg>
+
+    <button class="cta-button" type="button" [ngStyle]="{ top: ctaTop() + '%' }">COME&Ccedil;AR</button>
+
+    <button
+      class="mission-node"
+      type="button"
+      *ngFor="let mission of missions(); let i = index; trackBy: trackById"
+      [ngClass]="{
+        'is-right': isRight(i),
+        'is-completed': mission.completed,
+        'is-current': mission.current,
+        'is-locked': mission.locked
+      }"
+      [ngStyle]="{ top: nodeTop(i) + '%' }"
+      [disabled]="mission.locked"
+      [attr.aria-label]="mission.title"
+    >
+      <span class="node-shadow"></span>
+      <span class="node-face">
+        <span class="node-icon" [ngSwitch]="mission.icon" aria-hidden="true">
+          <svg *ngSwitchCase="'coin'" viewBox="0 0 24 24" role="img" focusable="false">
+            <circle cx="10" cy="12" r="6" fill="#ef4343" />
+            <circle cx="16.5" cy="11.5" r="3.2" fill="#f5c443" />
+            <path d="M8 6c2 2 6 2 8 0" stroke="#2f6f33" stroke-width="2" stroke-linecap="round" />
+            <path d="M10 5v3" stroke="#2f6f33" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <svg *ngSwitchCase="'water'" viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M12 4c4 5 6 7 6 10a6 6 0 0 1-12 0c0-3 2-5 6-10Z" fill="#7fb4d6" />
+            <circle cx="12" cy="15" r="3" fill="#c9e5f5" />
+          </svg>
+          <svg *ngSwitchCase="'plant'" viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M12 20v-8" stroke="#2f6f33" stroke-width="2" stroke-linecap="round" />
+            <path d="M12 12c0-4 3-6 7-6-1 4-4 6-7 6Z" fill="#7cdc6d" />
+            <path d="M12 12c0-4-3-6-7-6 1 4 4 6 7 6Z" fill="#6ec760" />
+          </svg>
+          <svg *ngSwitchCase="'dig'" viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M4 17c3-3 13-3 16 0" stroke="#8b5e3c" stroke-width="3" stroke-linecap="round" />
+            <path d="M16 6l4 4-2 2-4-4" fill="#9aa3a8" />
+            <path d="M14 4l2 2-4 4-2-2Z" fill="#7b5b3e" />
+          </svg>
+          <svg *ngSwitchCase="'cart'" viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M5 13h11l-1 6H7Z" fill="#b37b42" />
+            <circle cx="17" cy="18" r="2.5" fill="#5d5d5d" />
+            <path d="M8 13l3-6" stroke="#7a532c" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <svg *ngSwitchCase="'fertilizer'" viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M7 6h10l1 4v9H6V10Z" fill="#f1e6c3" stroke="#8b7b5a" stroke-width="1.5" />
+            <circle cx="12" cy="14" r="2.5" fill="#7cdc6d" />
+          </svg>
+          <svg *ngSwitchCase="'seed'" viewBox="0 0 24 24" role="img" focusable="false">
+            <ellipse cx="12" cy="12" rx="6" ry="4" fill="#f2c14e" />
+            <ellipse cx="10" cy="12" rx="2" ry="1.4" fill="#f6d77a" />
+          </svg>
+        </span>
+        <span class="node-check" *ngIf="mission.completed" aria-hidden="true">&#10003;</span>
+      </span>
+    </button>
+  </div>
+
   <app-home-bottom-nav></app-home-bottom-nav>
 </section>

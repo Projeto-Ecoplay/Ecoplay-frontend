@@ -1,0 +1,87 @@
+<section class="delivery">
+  <header class="delivery-header">
+    <h1 class="delivery-title">Saiba para onde sua horta vai</h1>
+    <span class="delivery-logo" aria-label="EcoPlay">
+      <img *ngIf="!logoError()" src="assets/logo-wt.png" alt="EcoPlay" (error)="onLogoError()" />
+      <svg *ngIf="logoError()" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" fill="#e7f6eb" stroke="#113646" stroke-width="3" />
+        <path d="M24 12v14" stroke="#2f6f33" stroke-width="3" stroke-linecap="round" />
+        <path d="M24 22c0-5 4-8 10-8-2 6-6 8-10 8Z" fill="#7cdc6d" />
+        <path d="M24 22c0-5-4-8-10-8 2 6 6 8 10 8Z" fill="#6ec760" />
+      </svg>
+    </span>
+  </header>
+
+  <div class="map-card">
+    <div class="map-frame" aria-label="Mapa de escolas">
+      <div #mapCanvas class="map-canvas" role="application" aria-label="Mapa dos pontos de entrega"></div>
+      <div class="map-overlay" *ngIf="!hasMapsKey()">
+        <strong>Mapa indisponivel</strong>
+        <span>Adicione sua Google Maps API Key para ativar.</span>
+      </div>
+      <div class="map-overlay" *ngIf="mapStatus() === 'loading'">
+        <strong>Carregando mapa...</strong>
+      </div>
+      <div class="map-overlay map-overlay--error" *ngIf="mapStatus() === 'error'">
+        <strong>Nao foi possivel carregar o mapa.</strong>
+        <span>Tente novamente em instantes.</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="delivery-subtitle">Mande para uma escola de sua escolha</h2>
+
+  <div class="delivery-filters">
+    <div class="filter-group">
+      <span class="filter-label">Bairro</span>
+      <div class="filter-row">
+        <button
+          class="filter-chip"
+          type="button"
+          *ngFor="let bairro of neighborhoods(); trackBy: trackByValue"
+          [class.is-active]="bairro === selectedNeighborhood()"
+          (click)="selectNeighborhood(bairro)"
+        >
+          {{ bairro }}
+        </button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Doacao</span>
+      <div class="filter-row">
+        <button
+          class="filter-chip"
+          type="button"
+          *ngFor="let tipo of donationTypes(); trackBy: trackByValue"
+          [class.is-active]="tipo === selectedDonationType()"
+          (click)="selectDonationType(tipo)"
+        >
+          {{ tipo }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ul class="school-list">
+    <li *ngFor="let school of filteredSchools(); trackBy: trackById">
+      <button
+        class="school-item"
+        type="button"
+        [class.is-selected]="school.id === selectedId()"
+        (click)="selectSchool(school.id)"
+        [attr.aria-pressed]="school.id === selectedId()"
+      >
+        <span class="school-icon" aria-hidden="true">
+          <img [src]="school.icon" [alt]="school.name" />
+        </span>
+        <div class="school-info">
+          <strong>{{ school.name }}</strong>
+          <span>{{ school.addressLine1 }}</span>
+          <span>{{ school.addressLine2 }}</span>
+        </div>
+      </button>
+    </li>
+  </ul>
+
+  <app-home-bottom-nav></app-home-bottom-nav>
+</section>

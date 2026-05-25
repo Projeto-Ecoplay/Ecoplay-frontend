@@ -1,0 +1,276 @@
+.plantio {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  background: #f7fbf4 url('/assets/fundo-home.png') repeat;
+  background-size: clamp(180px, 38vw, 230px);
+  padding: clamp(1rem, 3vw, 1.2rem) clamp(0.9rem, 3vw, 1.1rem)
+    calc(6.7rem + env(safe-area-inset-bottom));
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.9rem, 2.4vw, 1.2rem);
+  overflow: hidden;
+}
+
+.plantio::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.8) 55%, rgba(247, 251, 244, 0.92) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.plantio > * {
+  position: relative;
+  z-index: 1;
+}
+
+.plantio-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.plantio-header h1 {
+  margin: 0;
+  font-family: 'Baloo 2', 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 5.6vw, 2.1rem);
+  color: #0f3441;
+}
+
+.plantio-header p {
+  margin: 0.2rem 0 0;
+  color: #1a4a5c;
+  font-weight: 700;
+  font-size: clamp(0.75rem, 2.6vw, 0.9rem);
+}
+
+.plantio-logo {
+  width: clamp(46px, 12vw, 56px);
+  height: clamp(46px, 12vw, 56px);
+  border-radius: 50%;
+  border: 2px solid #113646;
+  background: #e7f6eb;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 5px 0 rgba(17, 54, 70, 0.18);
+  flex-shrink: 0;
+}
+
+.plantio-logo img,
+.plantio-logo svg {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+}
+
+.plantio-mission {
+  background: #0f3441;
+  color: #e5f7df;
+  border-radius: clamp(16px, 3.6vw, 20px);
+  padding: clamp(0.85rem, 3vw, 1.1rem);
+  border: 2px solid #0c2a36;
+  box-shadow: 0 10px 0 rgba(12, 42, 54, 0.35);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.8rem 1rem;
+  align-items: center;
+}
+
+.mission-eyebrow {
+  font-weight: 800;
+  color: #7cdc6d;
+  font-size: 0.8rem;
+}
+
+.plantio-mission h2 {
+  margin: 0.3rem 0 0.2rem;
+  font-family: 'Baloo 2', 'Nunito', sans-serif;
+  font-size: clamp(1rem, 3.6vw, 1.2rem);
+}
+
+.plantio-mission p {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(0.7rem, 2.4vw, 0.85rem);
+  color: #cde5e9;
+}
+
+.mission-reward {
+  display: inline-flex;
+  margin-top: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  background: #7cdc6d;
+  color: #0f3441;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+
+.mission-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: #0b2a35;
+  border: 2px solid #1b4a57;
+  display: grid;
+  place-items: center;
+}
+
+.mission-icon img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.mission-cta {
+  grid-column: 1 / -1;
+  border: 2px solid #0c2a36;
+  border-radius: 12px;
+  padding: 0.6rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: #5cab4f;
+  box-shadow: 0 6px 0 rgba(12, 42, 54, 0.35);
+  cursor: pointer;
+  justify-self: start;
+}
+
+.plantio-section-title {
+  margin: 0;
+  font-family: 'Baloo 2', 'Nunito', sans-serif;
+  font-size: clamp(1.1rem, 4vw, 1.3rem);
+  color: #0f3441;
+}
+
+.plantio-grid {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.plantio-bed {
+  border: 2px solid #113646;
+  border-radius: 16px;
+  padding: 0.7rem 0.9rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  background: #ffffff;
+  box-shadow: 0 6px 0 rgba(17, 54, 70, 0.16);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plantio-bed.is-selected {
+  border-color: #5cab4f;
+  box-shadow: 0 8px 0 rgba(12, 42, 54, 0.25);
+}
+
+.plantio-bed:hover {
+  transform: translateY(-1px);
+}
+
+.bed-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eaf6ec;
+  border: 2px solid #5cab4f;
+  display: grid;
+  place-items: center;
+}
+
+.bed-icon img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.bed-info strong {
+  display: block;
+  font-weight: 800;
+  color: #0f3441;
+}
+
+.bed-info span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2f6b7d;
+}
+
+.bed-bar {
+  margin-top: 0.35rem;
+  height: 8px;
+  border-radius: 999px;
+  background: #e4efe7;
+  overflow: hidden;
+  display: block;
+}
+
+.bed-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #7cdc6d, #5cab4f);
+  width: 0;
+  transition: width 0.4s ease;
+}
+
+.bed-progress {
+  font-weight: 800;
+  color: #0f3441;
+}
+
+.plantio-tools {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.tool-item {
+  background: #ffffff;
+  border: 2px solid #113646;
+  border-radius: 14px;
+  padding: 0.6rem 0.4rem;
+  display: grid;
+  place-items: center;
+  gap: 0.35rem;
+  box-shadow: 0 5px 0 rgba(17, 54, 70, 0.18);
+  cursor: pointer;
+}
+
+.tool-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #eaf6ec;
+  border: 2px solid #5cab4f;
+  display: grid;
+  place-items: center;
+}
+
+.tool-icon img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.tool-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #0f3441;
+}
+
+@media (max-width: 420px) {
+  .plantio {
+    max-width: 100%;
+  }
+}
